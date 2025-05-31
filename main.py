@@ -54,7 +54,7 @@ def text_transform(chosen_number, txt_str):
         return f'Text to Lowercase:\n{text.lower()}'
 
     def text_title(text):
-        return f'Title case text: {text.title()}'
+        return f'Title case text:\n{text.title()}'
 
     def count_vowels(text):
         vowels_count = 0
@@ -64,11 +64,11 @@ def text_transform(chosen_number, txt_str):
         return f'Vowels count: {vowels_count}'
 
     def remove_spaces(text):
-        return f'Spaces removed: {text.replace(' ', '')}'
+        return f'Spaces removed:\n{text.replace(' ', '')}'
 
     def replace_vowels(text):
         text_list = ['*' if letter in 'aeiou' else letter for letter in text]
-        return 'Vowels replaced with "*": '+ ''.join(text_list)
+        return 'Vowels replaced with "*":\n'+ ''.join(text_list)
 
     def is_palindrome(text):
         result = ''
@@ -112,7 +112,7 @@ def text_transform(chosen_number, txt_str):
             if response.status_code == 200:
                 data = response.json()
             else:
-                return 'Error!! Joke not found. Check params!'
+                return 'Oops!!! An error occurred while getting the response from API. Check params!/URL'
 
         if data['type'] == 'twopart':
             joke_text = (f'\n– {data['setup']} 🤔'
@@ -121,6 +121,8 @@ def text_transform(chosen_number, txt_str):
             joke_text = f'\n 😀 {data['joke']} 😀'
         return joke_text
 
+    # to avoid the annoying if-elif :D
+    # binds the choice to the corresponding func
     functions = {
         1: text_reverse,
         2: text_upper,
