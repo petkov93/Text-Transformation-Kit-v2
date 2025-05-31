@@ -2,7 +2,10 @@
 """
 import json
 import random
+
 import requests
+
+
 # from pprint import pprint
 
 # with open('prog_jokes.json' ,mode='w', encoding='utf-8') as file:
@@ -11,6 +14,7 @@ import requests
 def print_welcome_screen():
     starting_text = ["🧠 Welcome to the Text Transformation Toolkit!",
                      "Choose a transformation:",
+                     "-----------------------------------------------",
                      "1. Reverse Text ⬅️⬅️⬅️",
                      "2. Convert to Uppercase ⬆️⬆️⬆️",
                      "3. Convert to Lowercase ⬇️⬇️⬇️",
@@ -21,7 +25,9 @@ def print_welcome_screen():
                      "8. Check if Palindrome 👍/👎",
                      "9. Word Frequency Counter ➡️ word: count",
                      "10. Get random programming joke 😀",
-                     "0. Get random prog. joke BUT from API 😀"
+                     "0. Get random prog. joke BUT from API 😀",
+                     "-----------------------------------------------",
+                     '',
                      ]
     for txt in starting_text:
         print(txt)
@@ -68,7 +74,7 @@ def text_transform(chosen_number, txt_str):
 
     def replace_vowels(text):
         text_list = ['*' if letter in 'aeiou' else letter for letter in text]
-        return 'Vowels replaced with "*":\n'+ ''.join(text_list)
+        return 'Vowels replaced with "*":\n' + ''.join(text_list)
 
     def is_palindrome(text):
         result = ''
@@ -144,7 +150,7 @@ def text_transform(chosen_number, txt_str):
     return txt_str
 
 
-def main():
+def main_func():
     # Step 1: Display a menu to the user
     print_welcome_screen()
     # Step 2: Get the user's choice
@@ -152,8 +158,8 @@ def main():
     chosen_number, text = get_choice()
     # Step 4: Apply the selected transformation
     result = text_transform(chosen_number, text)
-    print(result)
+    print(f'{result}\n')
 
 
 if __name__ == '__main__':
-    main()
+    main_func()
