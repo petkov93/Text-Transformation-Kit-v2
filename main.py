@@ -3,7 +3,7 @@
 import json
 import random
 import requests
-from pprint import pprint
+# from pprint import pprint
 
 # with open('prog_jokes.json' ,mode='w', encoding='utf-8') as file:
 #     json.dump(jokes, file,ensure_ascii=False)
@@ -45,16 +45,16 @@ def get_choice():
 
 def text_transform(chosen_number, txt_str):
     def text_reverse(text):
-        return text[::-1]
+        return f'Reversed text:\n{text[::-1]}'
 
     def text_upper(text):
-        return text.upper()
+        return f'Text to Uppercase:\n{text.upper()}'
 
     def text_lower(text):
-        return text.lower()
+        return f'Text to Lowercase:\n{text.lower()}'
 
     def text_title(text):
-        return text.title()
+        return f'Title case text: {text.title()}'
 
     def count_vowels(text):
         vowels_count = 0
@@ -64,10 +64,11 @@ def text_transform(chosen_number, txt_str):
         return f'Vowels count: {vowels_count}'
 
     def remove_spaces(text):
-        return text.replace(' ', '')
+        return f'Spaces removed: {text.replace(' ', '')}'
 
     def replace_vowels(text):
-        return ' '.join(['*' if letter in 'aeiou' else letter for letter in text])
+        text_list = ['*' if letter in 'aeiou' else letter for letter in text]
+        return 'Vowels replaced with "*": '+ ''.join(text_list)
 
     def is_palindrome(text):
         result = ''
@@ -80,14 +81,14 @@ def text_transform(chosen_number, txt_str):
     def word_frequency_counter(text):
         text_lst = text.lower().split(' ')
         dict1 = {}
-        output_str = ''
+        output_str = 'Word Frequency Counter:\n'
         for word in text_lst:
             if '.' in word:
                 word.replace('.', '')
             word_count = text_lst.count(word)
             dict1.update({word: word_count})
         for key in dict1:
-            output_str += f'{key} : {dict1[key]}\n'
+            output_str += f'{key} => {dict1[key]}\n'
         return output_str
 
     def print_random_joke(text):
@@ -114,10 +115,10 @@ def text_transform(chosen_number, txt_str):
                 return 'Error!! Joke not found. Check params!'
 
         if data['type'] == 'twopart':
-            joke_text = (f'\n– {data['setup']}'
-                         f'\n– {data['delivery']}')
+            joke_text = (f'\n– {data['setup']} 🤔'
+                         f'\n– {data['delivery']} 💁‍♂️')
         else:
-            joke_text = f'\n{data['joke']}'
+            joke_text = f'\n 😀 {data['joke']} 😀'
         return joke_text
 
     functions = {
@@ -133,8 +134,9 @@ def text_transform(chosen_number, txt_str):
         0: print_api_joke,
         10: print_random_joke,
     }
-
+    # gets the corresponding func from the functions
     selected_function = functions.get(chosen_number)
+    # transforming the text
     txt_str = selected_function(txt_str)
 
     return txt_str
