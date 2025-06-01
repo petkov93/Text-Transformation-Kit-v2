@@ -2,10 +2,7 @@
 """
 import json
 import random
-
 import requests
-
-
 # from pprint import pprint
 
 # with open('prog_jokes.json' ,mode='w', encoding='utf-8') as file:
